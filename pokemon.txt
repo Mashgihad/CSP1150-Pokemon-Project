@@ -1,0 +1,14 @@
+[
+    {
+        "name": "Bulbasaur",
+        "number": 1,
+        "category": "Seed Pok\u00e9mon",
+        "height": 0.7,
+        "weight": 6.9,
+        "types": [
+            "Grass",
+            "Poison"
+        ],
+        "evolves_from": null
+    }
+]
