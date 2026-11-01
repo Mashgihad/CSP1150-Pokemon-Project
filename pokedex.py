@@ -1,6 +1,6 @@
 
-# Name:Mashgihad Farhan Tihan 
-# Student Number:10735759
+# Name: Mashgihad Farhan Tihan
+# Student Number: 10735759
 
 # CSP1150 Project - pokedex.py
 
@@ -18,7 +18,7 @@ class ProgramGUI:
                 self.data = json.load(file)
 
             if not isinstance(self.data, list) or not self.data:
-                raise ValueError("The Pokedex is empty or has invalid data.")
+                raise ValueError("The Pokedex is empty or invalid.")
 
         except (OSError, ValueError, TypeError) as error:
             tkinter.messagebox.showerror(
@@ -27,71 +27,87 @@ class ProgramGUI:
             )
             return
 
+        # Start with the first Pokemon.
         self.index = 0
 
         # Create the main window.
         self.main = tkinter.Tk()
-        self.main.title("My Pokedex")
+        self.main.title("Mashgihad's Pokedex")
+        self.main.geometry("430x300")
         self.main.resizable(False, False)
+        self.main.configure(bg="#f0f0f0")
 
         # Create the heading label.
         self.heading = tkinter.Label(
             self.main,
+            text="",
             font=("Arial", 15, "bold"),
-            width=28
+            bg="#f0f0f0",
+            fg="#222222"
         )
-        self.heading.grid(
-            row=0, column=0, columnspan=3,
-            pady=(12, 5)
+        self.heading.pack(pady=(15, 10))
+
+        # Create a frame for navigation and image.
+        self.image_frame = tkinter.Frame(
+            self.main,
+            bg="#f0f0f0"
         )
+        self.image_frame.pack(pady=5)
 
         # Create the Previous button.
         self.previous_button = tkinter.Button(
-            self.main,
+            self.image_frame,
             text="<",
             width=5,
+            font=("Arial", 12),
             command=self.previous
         )
         self.previous_button.grid(
-            row=1, column=0, padx=10
+            row=0,
+            column=0,
+            padx=15
         )
 
-        # Create the image label.
+        # Create the Pokemon image label.
         self.image_label = tkinter.Label(
-            self.main,
-            width=120,
-            height=120
+            self.image_frame,
+            bg="#f0f0f0"
         )
         self.image_label.grid(
-            row=1, column=1, padx=8
+            row=0,
+            column=1,
+            padx=10
         )
 
         # Create the Next button.
         self.next_button = tkinter.Button(
-            self.main,
+            self.image_frame,
             text=">",
             width=5,
+            font=("Arial", 12),
             command=self.next
         )
         self.next_button.grid(
-            row=1, column=2, padx=10
+            row=0,
+            column=2,
+            padx=15
         )
 
         # Create the Pokemon details label.
         self.details_label = tkinter.Label(
             self.main,
-            justify="left",
-            font=("Arial", 11)
+            text="",
+            justify="center",
+            font=("Arial", 11),
+            bg="#f0f0f0",
+            fg="#222222"
         )
-        self.details_label.grid(
-            row=2, column=0,
-            columnspan=3, pady=(5, 14)
-        )
+        self.details_label.pack(pady=(10, 10))
 
         # Display the first Pokemon.
         self.show_pokemon()
 
-        # Start the GUI.
+        # Start the GUI main loop.
         tkinter.mainloop()
 
 
@@ -99,7 +115,7 @@ class ProgramGUI:
         # Get the current Pokemon.
         pokemon = self.data[self.index]
 
-        # Display its name and number.
+        # Display Pokemon name and number.
         self.heading.config(
             text="{}\n#{:04d}".format(
                 pokemon["name"],
@@ -116,19 +132,23 @@ class ProgramGUI:
             self.photo = tkinter.PhotoImage(
                 file=image_path
             )
+
             self.image_label.config(
                 image=self.photo,
                 text=""
             )
 
-        except tkinter.TclError:
+        except (tkinter.TclError, OSError):
             self.photo = None
+
             self.image_label.config(
                 image="",
-                text="Image unavailable"
+                text="Image unavailable",
+                width=18,
+                height=6
             )
 
-        # Prepare the Pokemon details.
+        # Prepare Pokemon details.
         details = "{}\nType: {}\nSize: {}m, {}kg".format(
             pokemon["category"],
             ", ".join(pokemon["types"]),
@@ -143,7 +163,28 @@ class ProgramGUI:
             )
 
         # Update the details label.
-        self.details_label.config(text=details)
+        self.details_label.config(
+            text=details
+        )
+
+        # Enable or disable navigation buttons.
+        if self.index == 0:
+            self.previous_button.config(
+                state="disabled"
+            )
+        else:
+            self.previous_button.config(
+                state="normal"
+            )
+
+        if self.index == len(self.data) - 1:
+            self.next_button.config(
+                state="disabled"
+            )
+        else:
+            self.next_button.config(
+                state="normal"
+            )
 
 
     def previous(self):
