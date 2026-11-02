@@ -359,7 +359,7 @@ while True:
         # Quit the program.
 
         print(
-            "Goodbye! Made by YOUR NAME "
+            "Goodbye! Made by  Mashgihad Farhan Tihan "
             "(10735759)."
         )
         break

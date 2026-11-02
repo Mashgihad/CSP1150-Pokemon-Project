@@ -54,7 +54,6 @@ class ProgramGUI:
         )
         self.image_frame.pack(pady=5)
 
-        # Create the Previous button.
         self.previous_button = tkinter.Button(
             self.image_frame,
             text="<",
@@ -67,7 +66,6 @@ class ProgramGUI:
             column=0,
             padx=15
         )
-
         # Create the Pokemon image label.
         self.image_label = tkinter.Label(
             self.image_frame,
@@ -92,8 +90,6 @@ class ProgramGUI:
             column=2,
             padx=15
         )
-
-        # Create the Pokemon details label.
         self.details_label = tkinter.Label(
             self.main,
             text="",
@@ -109,8 +105,6 @@ class ProgramGUI:
 
         # Start the GUI main loop.
         tkinter.mainloop()
-
-
     def show_pokemon(self):
         # Get the current Pokemon.
         pokemon = self.data[self.index]
@@ -185,14 +179,11 @@ class ProgramGUI:
             self.next_button.config(
                 state="normal"
             )
-
-
     def previous(self):
         # Move to the previous Pokemon.
         if self.index > 0:
             self.index -= 1
             self.show_pokemon()
-
 
     def next(self):
         # Move to the next Pokemon.
@@ -200,6 +191,4 @@ class ProgramGUI:
             self.index += 1
             self.show_pokemon()
 
-
-# Create an object of the ProgramGUI class.
 gui = ProgramGUI()

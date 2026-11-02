@@ -10,5 +10,38 @@
             "Poison"
         ],
         "evolves_from": null
+    },
+    {
+        "name": "Charmander",
+        "number": 4,
+        "category": "Lizard Pok\u00e9mon",
+        "height": 0.6,
+        "weight": 8.5,
+        "types": [
+            "Fire"
+        ],
+        "evolves_from": null
+    },
+    {
+        "name": "Squirtle",
+        "number": 7,
+        "category": "Tiny Turtle Pok\u00e9mon",
+        "height": 0.5,
+        "weight": 9.0,
+        "types": [
+            "Water"
+        ],
+        "evolves_from": null
+    },
+    {
+        "name": "Pikachu",
+        "number": 25,
+        "category": "Mouse Pok\u00e9mon",
+        "height": 0.4,
+        "weight": 6.0,
+        "types": [
+            "Electric"
+        ],
+        "evolves_from": "Pichu"
     }
 ]
