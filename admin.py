@@ -282,8 +282,6 @@ while True:
                         ).zfill(4)
                         + ": " + pokemon["name"]
                     )
-
-
     elif choice == "v":
         # View details of a Pokemon.
 
@@ -322,8 +320,6 @@ while True:
                     "Evolves from "
                     + pokemon["evolves_from"]
                 )
-
-
     elif choice == "d":
         # Delete a Pokemon.
 
@@ -353,8 +349,6 @@ while True:
                 pokemon["name"]
                 + " deleted from Pokedex."
             )
-
-
     elif choice == "q":
         # Quit the program.
 
